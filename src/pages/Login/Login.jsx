@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useRef } from "react";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
@@ -12,13 +12,13 @@ function Login() {
   const { isFetching, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleClick = (event) => {
+  const handleClick = async (event) => {
     event.preventDefault();
     loginCall(
       { email: email.current.value, password: password.current.value },
       dispatch
     );
-    navigate("/");
+    navigate("/register");
   };
 
   return (

@@ -74,7 +74,8 @@ function Profile() {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Feed currentUser={currentUser} username={usernameParams} />
+            {/* <Feed currentUser={currentUser} username={usernameParams} /> */}
+            <Feed />
             <Rightbar user={user} currentUser={currentUser} />
           </div>
         </div>

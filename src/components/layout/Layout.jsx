@@ -4,7 +4,7 @@ import Topbar from "../topbar/Topbar";
 function Layout({ children, user }) {
   return (
     <div>
-      <Topbar user={user} />
+      {user && <Topbar user={user} />}
       {children}
     </div>
   );

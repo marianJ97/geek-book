@@ -1,7 +1,7 @@
 import {
-  EmojiEmotions,
-  Label,
-  Room,
+  // EmojiEmotions,
+  // Label,
+  // Room,
   PermMedia,
   Cancel,
 } from "@material-ui/icons";
@@ -9,34 +9,15 @@ import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./Share.css";
 import Upload from "../Upload/Upload";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from "../../firebase";
+// import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+// import { storage } from "../../firebase";
+import useUpload from "../../helpers/useUpload";
 
 function Share({ setRerender }) {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const desc = useRef();
   const [file, setFile] = useState(null);
-  const [percentage, setPercentage] = useState(null);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    const newPost = {
-      userId: user._id,
-      desc: desc.current.value,
-      img: "",
-    };
-
-    if (!file) {
-      return sendNewPost(newPost);
-    }
-
-    try {
-      imageUpload(file, sendNewPostWithFile(newPost));
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const sendNewPost = (body) => {
     fetch(`http://localhost:8800/api/posts`, {
@@ -58,43 +39,26 @@ function Share({ setRerender }) {
     return sendNewPost({ ...body, img: fileURL });
   };
 
-  const imageUpload = (file, onImageUploadFinished) => {
-    const name = new Date().getTime() + file?.name;
-    console.log(name);
-    const storageRef = ref(storage, name);
+  const [percentage, uploadImg] = useUpload(file, sendNewPostWithFile);
 
-    const uploadTask = uploadBytesResumable(storageRef, file);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const newPost = {
+      userId: user._id,
+      desc: desc.current.value,
+      img: "",
+    };
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
-        setPercentage(progress);
-        switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
-            break;
-          case "running":
-            console.log("Upload is running");
-            break;
-          default:
-            break;
-        }
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log("File available at", downloadURL);
-          onImageUploadFinished(downloadURL);
-        });
-      }
-    );
+    if (!file) {
+      return sendNewPost(newPost);
+    }
+
+    try {
+      uploadImg(newPost);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
   return (
     <div className="share">
       <div className="shareWrapper">
@@ -124,22 +88,15 @@ function Share({ setRerender }) {
         )}
         <form className="shareBottom" onSubmit={submitHandler}>
           <div className="shareOptions">
-            <Upload onChange={(event) => setFile(event.target.files[0])}>
+            <Upload
+              onChange={(event) => {
+                console.log(event.target.files[0]);
+                setFile(event.target.files[0]);
+              }}
+            >
               <PermMedia htmlColor="tomato" className="shareIcon" />
               <span className="shareOptionText">Photo or video</span>
             </Upload>
-            {/* <div className="shareOption">
-              <Label htmlColor="blue" className="shareIcon" />
-              <span className="shareOptionText">Tag</span>
-            </div>
-            <div className="shareOption">
-              <Room htmlColor="green" className="shareIcon" />
-              <span className="shareOptionText">Location</span>
-            </div>
-            <div className="shareOption">
-              <EmojiEmotions htmlColor="goldenrod" className="shareIcon" />
-              <span className="shareOptionText">Reactions</span>
-            </div> */}
           </div>
           <button
             disabled={percentage !== null && percentage < 100}

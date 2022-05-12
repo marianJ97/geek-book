@@ -1,6 +1,6 @@
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useState } from "react";
-import { storage } from "../../firebase";
+import { storage } from "../firebase";
 
 const useUpload = (file, onImageUploadFinished) => {
   const [percentage, setPercentage] = useState(null);
@@ -11,7 +11,7 @@ const useUpload = (file, onImageUploadFinished) => {
   //   return sendNewPost({ ...body, img: fileURL });
   // };
 
-  const imageUpload = (file, onImageUploadFinished, body) => {
+  const imageUpload = (file, onImageUploadFinished) => {
     const name = new Date().getTime() + file?.name;
     console.log(name);
     const storageRef = ref(storage, name);
@@ -46,10 +46,9 @@ const useUpload = (file, onImageUploadFinished) => {
         });
       }
     );
-
-    imageUpload(file, onImageUploadFinished(body));
-    return { percentage };
   };
+
+  return [percentage, (body) => imageUpload(file, onImageUploadFinished(body))];
 };
 
 export default useUpload;
