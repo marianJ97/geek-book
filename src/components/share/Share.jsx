@@ -1,26 +1,23 @@
-import { EmojiEmotions, Label, Room, Cancel } from "@material-ui/icons";
-import { useContext, useEffect, useRef, useState } from "react";
+import {
+  EmojiEmotions,
+  Label,
+  Room,
+  PermMedia,
+  Cancel,
+} from "@material-ui/icons";
+import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
 import "./Share.css";
 import Upload from "../Upload/Upload";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase";
-// import { send } from "process";
 
 function Share({ setRerender }) {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const desc = useRef();
   const [file, setFile] = useState(null);
-  const [fileURL, setFileURL] = useState(null);
   const [percentage, setPercentage] = useState(null);
-
-  // useEffect(() => {
-  //   if (file) {
-  //     imageUpload(file);
-  //   }
-  // }, [file]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -54,13 +51,6 @@ function Share({ setRerender }) {
     setFile(null);
     setRerender();
   };
-
-  // function sendNewPostWithFileAlt(body) {
-
-  //   return function(fileURL) {
-
-  //   }
-  // }
 
   const sendNewPostWithFile = (body) => (fileURL) => {
     console.log({ fileURL });
@@ -100,7 +90,6 @@ function Share({ setRerender }) {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log("File available at", downloadURL);
           onImageUploadFinished(downloadURL);
-          setFileURL(downloadURL);
         });
       }
     );
@@ -135,7 +124,10 @@ function Share({ setRerender }) {
         )}
         <form className="shareBottom" onSubmit={submitHandler}>
           <div className="shareOptions">
-            <Upload onChange={(event) => setFile(event.target.files[0])} />
+            <Upload onChange={(event) => setFile(event.target.files[0])}>
+              <PermMedia htmlColor="tomato" className="shareIcon" />
+              <span className="shareOptionText">Photo or video</span>
+            </Upload>
             {/* <div className="shareOption">
               <Label htmlColor="blue" className="shareIcon" />
               <span className="shareOptionText">Tag</span>

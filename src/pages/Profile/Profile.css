@@ -17,6 +17,18 @@
   object-fit: cover;
 }
 
+.uploadCover {
+  right: 20px;
+  position: absolute;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  background-color: #353232;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 .profileUserImage {
   position: absolute;
   width: 150px;
@@ -31,7 +43,17 @@
   background-color: aliceblue;
 }
 
+.uploadUserImage {
+  display: flex;
+  align-items: center;
+  background-color: #747272;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 .profileInfo {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

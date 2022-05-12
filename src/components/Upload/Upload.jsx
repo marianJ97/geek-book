@@ -1,12 +1,10 @@
 import React from "react";
-import { PermMedia } from "@material-ui/icons";
 import "./Upload.css";
 
-function Upload({ onChange }) {
+function Upload({ onChange, children }) {
   return (
     <label htmlFor="file" className="shareOption">
-      <PermMedia htmlColor="tomato" className="shareIcon" />
-      <span className="shareOptionText">Photo or video</span>
+      {children}
       <input
         style={{ display: "none" }}
         type="file"

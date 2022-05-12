@@ -1,7 +1,6 @@
 .shareOption {
   display: flex;
   align-items: center;
-  margin-right: 15px;
   cursor: pointer;
 }
 
