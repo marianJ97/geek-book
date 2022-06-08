@@ -48,7 +48,7 @@ function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
               className="chatOnlineImg"
               src={
                 online.profilePicture
-                  ? PF + online.profilePicture
+                  ? online.profilePicture
                   : PF + "person/noAvatar.png"
               }
               alt=""

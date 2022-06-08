@@ -1,0 +1,12 @@
+.modal {
+}
+
+.modalWindow {
+  background-color: aliceblue;
+  z-index: 5;
+  position: absolute;
+  top: 50vh;
+  right: 50vw;
+  border-radius: 10px;
+  padding: 10px;
+}

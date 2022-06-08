@@ -8,6 +8,8 @@ import { Menu, Close } from "@material-ui/icons";
 
 function Topbar({ user }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -17,7 +19,11 @@ function Topbar({ user }) {
       </div>
       <div className="topbarFullWidth">
         <div className="topbarCenter">
-          <Searchbar />
+          <Searchbar
+            user={user}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+          />
         </div>
         <div className="topbarRight">
           <NotificationBar user={user} />
@@ -32,7 +38,11 @@ function Topbar({ user }) {
         {isOpen && (
           <div className="topbarResponsive">
             <div className="topbarCenter">
-              <Searchbar />
+              <Searchbar
+                user={user}
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+              />
             </div>
             <div className="topbarRight">
               <NotificationBar user={user} />

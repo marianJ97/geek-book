@@ -71,3 +71,9 @@
 .profileRightBottom {
   display: flex;
 }
+
+@media screen and (max-width: 800px) {
+  .profileRightBottom {
+    flex-direction: column-reverse;
+  }
+}

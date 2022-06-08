@@ -1,0 +1,54 @@
+.socialPanel {
+  flex: 9;
+  padding: 20px;
+}
+
+.socialPanelWrapper {
+  background-color: #413e3e;
+  border-radius: 15px;
+  min-height: 30vh;
+  padding: 15px;
+}
+
+/* .socialPanelWrapper div:first-child {
+  width: 300px;
+} */
+
+.socialPanelContainer {
+  display: flex;
+  min-height: 30vh;
+}
+
+.myNetwork {
+  margin-bottom: 15px;
+  flex: 5;
+  /* padding: 10px; */
+  background-color: #413e3e;
+  border-radius: 15px;
+  min-height: 30vh;
+  padding: 15px;
+  width: 92%;
+}
+
+.myNetwork:first-child {
+  margin-right: 15px;
+}
+
+.peopleList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100%;
+}
+
+.peopleList a {
+  margin: 5px;
+}
+
+@media screen and (max-width: 700px) {
+  .socialPanelContainer {
+    flex-direction: column;
+  }
+}

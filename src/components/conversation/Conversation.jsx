@@ -28,7 +28,7 @@ function Conversation({ conversation, currentUser }) {
       <img
         src={
           user?.profilePicture
-            ? PF + user.profilePicture
+            ? user.profilePicture
             : PF + "/person/noAvatar.png"
         }
         alt=""

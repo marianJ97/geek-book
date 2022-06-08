@@ -23,3 +23,14 @@
   justify-content: center;
   font-size: 0.8rem;
 }
+
+.logoutInfo {
+  position: absolute;
+  background-color: rgb(105, 105, 105);
+  width: max-content;
+  color: aliceblue;
+  padding: 5px 10px;
+  border-radius: 4px;
+  top: 30px;
+  right: 0;
+}

@@ -2,6 +2,10 @@
   flex: 3.5;
 }
 
+.rightbarHome {
+  flex: 3.5;
+}
+
 .rightbarWrapper {
   padding: 20px 20px 0 0;
 }
@@ -65,13 +69,13 @@
 .rightbarFollowings {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .rightbarFollowing {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin: 3px;
 }
 
 .rightbarFollowingImage {
@@ -100,8 +104,22 @@
   outline: none;
 }
 
+.generalButton {
+  background-color: #747272;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.generalButton:hover {
+  background-color: #555;
+  color: rgb(211, 216, 221);
+  cursor: pointer;
+}
+
 @media screen and (max-width: 800px) {
-  .rightbar {
+  .rightbarHome {
     display: none;
   }
 }

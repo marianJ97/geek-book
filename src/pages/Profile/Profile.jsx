@@ -5,8 +5,7 @@ import Rightbar from "../../components/rightbar/Rightbar";
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { AddAPhoto } from "@material-ui/icons";
-import Upload from "../../components/Upload/Upload";
+import PhotoAdder from "../../components/photoAdder/PhotoAdder";
 
 function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -23,7 +22,7 @@ function Profile() {
       setUser(data);
     };
     userFetch();
-  }, [usernameParams]);
+  }, [usernameParams, currentUser]);
 
   return (
     <>
@@ -36,25 +35,25 @@ function Profile() {
                 className="profileCoverImage"
                 src={
                   user.coverPicture
-                    ? PF + user.coverPicture
+                    ? user.coverPicture
                     : PF + "person/noCover.jpg"
                 }
                 alt=""
               />
               {currentUser.username === usernameParams && (
-                <Upload>
-                  <div className="uploadCover">
-                    <AddAPhoto />
-                    <span>Add cover photo</span>
-                  </div>
-                </Upload>
+                <PhotoAdder
+                  text="Add cover photo"
+                  className={"uploadCover"}
+                  typeOfPhoto={"coverPicture"}
+                  userId={user._id}
+                />
               )}
 
               <img
                 className="profileUserImage"
                 src={
                   user.profilePicture
-                    ? PF + user.profilePicture
+                    ? user.profilePicture
                     : PF + "person/noAvatar.png "
                 }
                 alt=""
@@ -62,20 +61,19 @@ function Profile() {
             </div>
             <div className="profileInfo">
               {currentUser.username === usernameParams && (
-                <Upload>
-                  <div className="uploadUserImage">
-                    <AddAPhoto />
-                    <span>Add profile photo</span>
-                  </div>
-                </Upload>
+                <PhotoAdder
+                  text="Add profile photo"
+                  className={"uploadUserImage"}
+                  typeOfPhoto={"profilePicture"}
+                  userId={user._id}
+                />
               )}
               <h4 className="profileInfoName">{user.username}</h4>
               <span className="profileInfoDesc">{user.desc}</span>
             </div>
           </div>
           <div className="profileRightBottom">
-            {/* <Feed currentUser={currentUser} username={usernameParams} /> */}
-            <Feed />
+            <Feed currentUser={currentUser} username={usernameParams} />
             <Rightbar user={user} currentUser={currentUser} />
           </div>
         </div>

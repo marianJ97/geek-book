@@ -4,6 +4,12 @@
   margin-bottom: 15px;
 }
 
+.searchedFriend {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
 .sidebarFriendImage {
   width: 32px;
   height: 32px;

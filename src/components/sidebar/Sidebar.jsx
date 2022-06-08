@@ -4,9 +4,11 @@ import {
   Chat,
   Event,
   Group,
+  AccountCircle,
   HelpOutline,
   PlayCircleFilledOutlined,
   RssFeed,
+  Settings,
   School,
   WorkOutline,
 } from "@material-ui/icons";
@@ -51,18 +53,24 @@ function Sidebar({ user }) {
             <PlayCircleFilledOutlined className="sidebarIcon" />
             <span className="sidebarListItemText">Videos</span>
           </li>
-          <Link to={"/"}>
+          <Link to={"/people"}>
             <li className="sidebarListItem">
               <Group className="sidebarIcon" />
-              <span className="sidebarListItemText">Friends</span>
+              <span className="sidebarListItemText">People</span>
+            </li>
+          </Link>
+          <Link to={`/profile/${user.username}`}>
+            <li className="sidebarListItem">
+              <AccountCircle className="sidebarIcon" />
+              <span className="sidebarListItemText">My profile</span>
             </li>
           </Link>
 
           <li className="sidebarListItem">
-            <Bookmark className="sidebarIcon" />
-            <span className="sidebarListItemText">Bookmarks</span>
+            <Settings className="sidebarIcon" />
+            <span className="sidebarListItemText">Settings</span>
           </li>
-          <li className="sidebarListItem">
+          {/* <li className="sidebarListItem">
             <HelpOutline className="sidebarIcon" />
             <span className="sidebarListItemText">Questions</span>
           </li>
@@ -77,13 +85,12 @@ function Sidebar({ user }) {
           <li className="sidebarListItem">
             <School className="sidebarIcon" />
             <span className="sidebarListItemText">Courses</span>
-          </li>
+          </li> */}
         </ul>
-        <button className="sidebarButton">Show more</button>
         <hr className="sidebarHr" />
         <ul className="sidebarFriendList">
           {friends.map((user) => (
-            <CloseFriend key={user._id} user={user} />
+            <CloseFriend key={user._id} user={user} responsive />
           ))}
         </ul>
       </div>

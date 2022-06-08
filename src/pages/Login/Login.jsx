@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useRef } from "react";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
@@ -18,7 +18,7 @@ function Login() {
       { email: email.current.value, password: password.current.value },
       dispatch
     );
-    navigate("/register");
+    navigate("/home");
   };
 
   return (

@@ -1,0 +1,20 @@
+.showMoreButton {
+  display: flex;
+  justify-content: center;
+}
+
+.showMoreButton button {
+  color: white;
+  background-color: #274233;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.showMoreButton button:disabled {
+  color: rgb(58, 58, 58);
+  background-color: #5a5e5b;
+  cursor: not-allowed;
+}

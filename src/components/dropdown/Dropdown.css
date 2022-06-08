@@ -1,0 +1,17 @@
+.dropdownWrapper {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  padding: 10px 15px;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  background-color: aliceblue;
+  z-index: 3;
+  color: black;
+  border-radius: 2px;
+  border: 2px solid #2dca8d;
+}

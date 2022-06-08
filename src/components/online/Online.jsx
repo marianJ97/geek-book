@@ -10,7 +10,7 @@ function Online({ user }) {
           className="rightbarProfileImg"
           src={
             user?.profilePicture
-              ? PF + user.profilePicture
+              ? user.profilePicture
               : PF + "/person/noAvatar.png"
           }
           alt=""

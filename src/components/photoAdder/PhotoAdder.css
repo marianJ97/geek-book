@@ -1,0 +1,37 @@
+.photoAdderPopup {
+  position: absolute;
+  background-color: rgb(75, 78, 78);
+  padding: 25px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  top: 80%;
+  right: 35%;
+}
+
+.photoAdderPopup div {
+  display: flex;
+  justify-content: center;
+}
+
+.photoAdderPopup button {
+  background-color: rgb(54, 54, 54);
+  color: rgb(151, 151, 151);
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px 5px 0 5px;
+}
+
+.blackBgr {
+  position: fixed;
+  background-color: rgba(175, 167, 167, 0.685);
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}

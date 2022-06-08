@@ -5,40 +5,43 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
-import { AuthContextProvider } from "./context/AuthContext";
 import Messenger from "./pages/messenger/Messenger";
 import "./App.css";
 import Layout from "./components/layout/Layout";
+import PeopleList from "./pages/PeopleList/PeopleList";
 
 function App() {
   const { user } = useContext(AuthContext);
 
   return (
-    <AuthContextProvider>
-      <BrowserRouter>
-        <Layout user={user}>
-          <Routes>
-            <Route exact path="/" element={user ? <Home /> : <Register />} />
-            <Route
-              path="/login"
-              element={user ? <Navigate to="/" /> : <Login />}
-            />
-            <Route
-              path="/register"
-              element={user ? <Navigate to="/" /> : <Register />}
-            />
-            <Route
-              path="/messenger"
-              element={user ? <Messenger /> : <Navigate to="/" />}
-            />
-            <Route
-              path="/profile/:username"
-              element={user ? <Profile /> : <Navigate to="/" />}
-            />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
-    </AuthContextProvider>
+    <BrowserRouter>
+      <Layout user={user}>
+        <Routes>
+          <Route exact path="/" element={user ? <Home /> : <Register />} />
+          <Route exact path="/home" element={<Home />} />
+          <Route
+            path="/login"
+            element={user ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/register"
+            element={user ? <Navigate to="/" /> : <Register />}
+          />
+          <Route
+            path="/messenger"
+            element={user ? <Messenger /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/profile/:username"
+            element={user ? <Profile /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/people"
+            element={user ? <PeopleList /> : <Navigate to="/" />}
+          />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
@@ -46,17 +49,25 @@ export default App;
 
 // what to do here //////////////////////////////////////////////////////
 
-// 1. refabricate components (FE) (login/logout)
+// 1. refabricate components (FE) (login/logout) --- its hard to change so long code
 
-// 2. redesign app (FE) // add responsive
+// 2. redesign app (FE) // add responsive --- design almost done
 
-// 3. add firebase (or another cloud) for image store
+// 3. add firebase (or another cloud) for image store --- done
 
-// 4. add edit profile info handlers
+// 4. add edit profile info handlers --- im working on it / done
 
-// 5. add better user verification JWT (BE/FE)
+// 5. add better user verification JWT (BE/FE) ***** at the end
 
-// 5. add searching between people (add functionality in case user is looking for another user without registration)
+// 5. add searching between people (add functionality in case user is looking for another user without registration) -- i guess done
+
+// 6. add pagination --done but bad
+
+// ***** BUGS
+
+// **FIXED** component behavior is different --- absented file id, components must have different id
+
+// **FIXED** dont load pictures --- solved with same solution like previous bug (side-product of this bug)
 
 // ***** CHAT
 
@@ -72,4 +83,4 @@ export default App;
 
 //    *create git repo and deploy
 
-// LAST show whole picture, delite post, add/delete comments
+// LAST show whole picture, delete post, add/delete comments

@@ -32,6 +32,30 @@ const AuthRecuder = (state, action) => {
           ),
         },
       };
+    case "AVATAR_UPDATE":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          profilePicture: action.payload,
+        },
+      };
+    case "COVER_UPDATE":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          coverPicture: action.payload,
+        },
+      };
+    // case "INFO_UPDATE":
+    //   return {
+    //     ...state,
+    //     user: {
+    //       ...state.user,
+    //       coverPicture: action.payload,
+    //     },
+    //   };
     default:
       return state;
   }

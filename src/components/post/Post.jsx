@@ -25,7 +25,7 @@ function Post({ post }) {
       setUser(data);
     };
     userFetch();
-  }, [post.userId]);
+  }, [post.userId, loggedUser?.profilePicture]);
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -55,7 +55,7 @@ function Post({ post }) {
                 className="postProfileImage"
                 src={
                   user.profilePicture
-                    ? PF + user.profilePicture
+                    ? user.profilePicture
                     : PF + "/person/noAvatar.png"
                 }
                 alt=""

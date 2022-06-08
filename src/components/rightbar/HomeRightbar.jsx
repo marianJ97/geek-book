@@ -42,7 +42,7 @@ function HomeRightbar({ user }) {
   }, [friends, onlineUsers]);
 
   return (
-    <div className="rightbar">
+    <div className="rightbarHome">
       <div className="rightbarWrapper">
         <div className="birthdayContainer">
           <img className="birthdayImage" src="/assets/gift.png" alt="" />
